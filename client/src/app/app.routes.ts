@@ -24,7 +24,7 @@ export const routes: Routes = [
         path: "toppers/:id/topics/:id",
         component: TopicComponent
     },
-    { path: 'add-topper', component: TopperComponent },
-    { path: 'add-topics', component: AddTopicsComponent },
+    { path: 'addToppers', component: TopperComponent },
+    { path: 'addTopics', component: AddTopicsComponent },
     { path: '', redirectTo: '/toppers', pathMatch: 'full' },
 ];

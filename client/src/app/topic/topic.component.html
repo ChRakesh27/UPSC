@@ -1,24 +1,15 @@
-<section class="vh-100" style="background-color: #508bfc">
-  <div class="container py-5 h-100">
-    <div class="h-100">
-      <div class="col-12 col-md-81 col-lg-16 col-xl-15">
-        <div class="card shadow-2-strong" style="border-radius: 1rem">
-          <div class="card-body p-5">
-            <button class="btn btn-success mb-2">Login</button>
-            <div class="list-group list-group-light">
-              <a
-                class="list-group-item list-group-item-action px-3 border-0 active"
-              >
-                Topic
-              </a>
+<button class="btn btn-primary mb-3" routerLink="">back</button>
+<a class="list-group-item list-group-item-action px-3 border-0 active">
+  Topic
+</a>
 
-              <div class="d-flex m-1 me-5">
-                {{ topic?.topicName }}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<div class="d-flex m-1 me-5">
+  {{ topic?.testCode }}<br />
+  {{ topic?.number }}<br />
+  {{ topic?.question }}<br />
+  {{ topic?.answer }}<br />
+  <!-- {{ topic?.images }}<br> -->
+  {{ topic?.paper }}<br />
+  {{ topic?.topicName }}<br />
+  {{ topic?.subtopicName }}<br />
+</div>

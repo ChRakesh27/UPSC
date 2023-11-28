@@ -1,30 +1,16 @@
-<section class="vh-100" style="background-color: #508bfc">
-  <div class="container py-5 h-100">
-    <div class="h-100">
-      <div class="col-12 col-md-81 col-lg-16 col-xl-15">
-        <div class="card shadow-2-strong" style="border-radius: 1rem">
-          <div class="card-body p-5">
-            <button class="btn btn-success mb-2">Login</button>
-            <div class="list-group list-group-light">
-              <a
-                class="list-group-item list-group-item-action px-3 border-0 active"
-              >
-                Topics
-              </a>
-              @for(topic of topics; track $index) {
-              <div class="d-flex m-1 me-5">
-                <button
-                  [routerLink]="['topics', topic._id]"
-                  class="list-group-item list-group-item-action px-3 border-0"
-                >
-                  {{ topic.topicName }}
-                </button>
-              </div>
-              }
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<button class="btn btn-primary m-3" routerLink="">back</button>
+<button class="btn btn-primary m-3" routerLink="/addTopics">Add Topic</button>
+
+<a class="list-group-item list-group-item-action px-3 border-0 active">
+  Topics
+</a>
+@for(topic of topics; track $index) {
+<div class="d-flex m-1 me-5">
+  <button
+    [routerLink]="['topics', topic._id]"
+    class="list-group-item list-group-item-action px-3 border-0"
+  >
+    {{ topic.topicName }}
+  </button>
+</div>
+}

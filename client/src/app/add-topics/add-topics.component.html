@@ -1,154 +1,136 @@
-<section class="vh-100" style="background-color: #508bfc">
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-12 col-md-81 col-lg-16 col-xl-15">
-        <div class="card shadow-2-strong" style="border-radius: 1rem">
-          <div class="card-body p-5">
-            <h3 class="mb-5 text-center">Add Topic</h3>
-            <form [formGroup]="answerForm">
-              <div class="form-outline mb-4">
-                <label class="form-label" for="typeTitleX-2">TestCode</label>
-                <input
-                  type="text"
-                  id="typeTitleX-2"
-                  class="form-control form-control-lg"
-                  placeholder="testCode"
-                  formControlName="testCode"
-                />
-              </div>
-              <div class="form-outline mb-4">
-                <label class="form-label" for="typeQuestionTextX-2"
-                  >Question number</label
-                >
-                <input
-                  type="number"
-                  id="typeQuestionTextX-2"
-                  class="form-control form-control-lg"
-                  placeholder="Question number"
-                  formControlName="number"
-                />
-              </div>
-              <div class="form-outline mb-4">
-                <label class="form-label" for="typeAnswerX-2">Question</label>
-                <input
-                  type="text"
-                  id="typeAnswerX-2"
-                  class="form-control form-control-lg"
-                  placeholder="question"
-                  formControlName="question"
-                />
-              </div>
-              <div class="form-outline mb-4">
-                <label class="form-label" for="typeAnswerX-2">Answer</label>
-                <textarea
-                  type="date"
-                  id="typeAnswerX-2"
-                  class="form-control form-control-lg"
-                  placeholder="answer"
-                  formControlName="answer"
-                ></textarea>
-              </div>
-              <div class="form-outline mb-4">
-                <label class="form-label" for="typeAnswerX-2">images</label>
-                <input
-                  type="file"
-                  id="typeAnswerX-2"
-                  class="form-control form-control-lg"
-                  placeholder="images"
-                  formControlName="images"
-                />
-              </div>
-              <div class="form-outline">
-                <label class="form-label" for="typeAnswerX-2">written By</label>
-                <mat-form-field class="example-full-width">
-                  <input
-                    type="text"
-                    placeholder="Pick one"
-                    aria-label="Number"
-                    matInput
-                    [formControl]="myControl"
-                    formControlName="written"
-                    [matAutocomplete]="auto"
-                  />
-                  <mat-autocomplete #auto="matAutocomplete">
-                    @for (option of filteredOptions | async; track option) {
-                    <mat-option [value]="option">{{ option }}</mat-option>
-                    }
-                  </mat-autocomplete>
-                </mat-form-field>
-              </div>
-              <div class="form-outline">
-                <label class="form-label" for="typeAnswerX-2">Paper</label>
-                <mat-form-field class="example-full-width">
-                  <input
-                    type="text"
-                    placeholder="paper"
-                    aria-label="Number"
-                    matInput
-                    [formControl]="myControl"
-                    formControlName="paper"
-                    [matAutocomplete]="auto"
-                  />
-                  <mat-autocomplete #auto="matAutocomplete">
-                    @for (option of filteredOptions | async; track option) {
-                    <mat-option [value]="option">{{ option }}</mat-option>
-                    }
-                  </mat-autocomplete>
-                </mat-form-field>
-              </div>
-              <div class="form-outline">
-                <label class="form-label" for="typeAnswerX-2">topicName</label>
-
-                <mat-form-field class="example-full-width">
-                  <input
-                    type="text"
-                    placeholder="topicName"
-                    aria-label="Number"
-                    matInput
-                    [formControl]="myControl"
-                    formControlName="topicName"
-                    [matAutocomplete]="auto"
-                  />
-                  <mat-autocomplete #auto="matAutocomplete">
-                    @for (option of filteredOptions | async; track option) {
-                    <mat-option [value]="option">{{ option }}</mat-option>
-                    }
-                  </mat-autocomplete>
-                </mat-form-field>
-              </div>
-              <div class="form-outline">
-                <label class="form-label" for="typeAnswerX-2"
-                  >SubtopicName
-                </label>
-
-                <mat-form-field class="example-full-width">
-                  <input
-                    type="text"
-                    placeholder="subtopicName"
-                    aria-label="Number"
-                    matInput
-                    [formControl]="myControl"
-                    formControlName="subtopicName"
-                    [matAutocomplete]="auto"
-                  />
-                  <mat-autocomplete #auto="matAutocomplete">
-                    @for (option of filteredOptions | async; track option) {
-                    <mat-option [value]="option">{{ option }}</mat-option>
-                    }
-                  </mat-autocomplete>
-                </mat-form-field>
-              </div>
-
-              <button
-                class="btn btn-primary btn-lg btn-block"
-                (click)="submit()"
-              >
-                Submit
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
+<button class="btn btn-primary mb-3" routerLink="">back</button>
+<h3 class="mb-5 text-center">Add Topic</h3>
+<form [formGroup]="answerForm">
+  <div class="form-outline mb-4">
+    <label class="form-label" for="typeTitleX-2">TestCode</label>
+    <input
+      type="text"
+      id="typeTitleX-2"
+      class="form-control form-control-lg"
+      placeholder="testCode"
+      formControlName="testCode"
+    />
   </div>
-</section>
+  <div class="form-outline mb-4">
+    <label class="form-label" for="typeQuestionTextX-2">Question number</label>
+    <input
+      type="number"
+      id="typeQuestionTextX-2"
+      class="form-control form-control-lg"
+      placeholder="Question number"
+      formControlName="number"
+    />
+  </div>
+  <div class="form-outline mb-4">
+    <label class="form-label" for="typeAnswerX-2">Question</label>
+    <input
+      type="text"
+      id="typeAnswerX-2"
+      class="form-control form-control-lg"
+      placeholder="question"
+      formControlName="question"
+    />
+  </div>
+  <div class="form-outline mb-4">
+    <label class="form-label" for="typeAnswerX-2">Answer</label>
+    <textarea
+      type="date"
+      id="typeAnswerX-2"
+      class="form-control form-control-lg"
+      placeholder="answer"
+      formControlName="answer"
+    ></textarea>
+  </div>
+  <div class="form-outline mb-4">
+    <label class="form-label" for="typeAnswerX-2">images</label>
+    <input
+      type="file"
+      id="typeAnswerX-2"
+      class="form-control form-control-lg"
+      placeholder="images"
+      formControlName="images"
+    />
+  </div>
+  <div class="form-outline">
+    <label class="form-label" for="typeAnswerX-2">written By</label>
+    <mat-form-field class="example-full-width">
+      <input
+        type="text"
+        placeholder="Pick one"
+        aria-label="Number"
+        matInput
+        [formControl]="myControl"
+        formControlName="written"
+        [matAutocomplete]="auto"
+      />
+      <mat-autocomplete #auto="matAutocomplete">
+        @for (option of filteredOptions | async; track option) {
+        <mat-option [value]="option">{{ option }}</mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+  <div class="form-outline">
+    <label class="form-label" for="typeAnswerX-2">Paper</label>
+    <mat-form-field class="example-full-width">
+      <input
+        type="text"
+        placeholder="paper"
+        aria-label="Number"
+        matInput
+        [formControl]="myControl"
+        formControlName="paper"
+        [matAutocomplete]="auto"
+      />
+      <mat-autocomplete #auto="matAutocomplete">
+        @for (option of filteredOptions | async; track option) {
+        <mat-option [value]="option">{{ option }}</mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+  <div class="form-outline">
+    <label class="form-label" for="typeAnswerX-2">topicName</label>
+
+    <mat-form-field class="example-full-width">
+      <input
+        type="text"
+        placeholder="topicName"
+        aria-label="Number"
+        matInput
+        [formControl]="myControl"
+        formControlName="topicName"
+        [matAutocomplete]="auto"
+      />
+      <mat-autocomplete #auto="matAutocomplete">
+        @for (option of filteredOptions | async; track option) {
+        <mat-option [value]="option">{{ option }}</mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+  <div class="form-outline">
+    <label class="form-label" for="typeAnswerX-2">SubtopicName </label>
+
+    <mat-form-field class="example-full-width">
+      <input
+        type="text"
+        placeholder="subtopicName"
+        aria-label="Number"
+        matInput
+        [formControl]="myControl"
+        formControlName="subtopicName"
+        [matAutocomplete]="auto"
+      />
+      <mat-autocomplete #auto="matAutocomplete">
+        @for (option of filteredOptions | async; track option) {
+        <mat-option [value]="option">{{ option }}</mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+
+  <button class="btn btn-primary btn-lg btn-block" (click)="submit()">
+    Submit
+  </button>
+</form>
