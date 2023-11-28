@@ -58,47 +58,85 @@
                   formControlName="images"
                 />
               </div>
-              <div class="form-outline mb-4">
+              <div class="form-outline">
                 <label class="form-label" for="typeAnswerX-2">written By</label>
-                <input
-                  type="text"
-                  id="typeAnswerX-2"
-                  class="form-control form-control-lg"
-                  placeholder="written"
-                  formControlName="written"
-                />
+                <mat-form-field class="example-full-width">
+                  <input
+                    type="text"
+                    placeholder="Pick one"
+                    aria-label="Number"
+                    matInput
+                    [formControl]="myControl"
+                    formControlName="written"
+                    [matAutocomplete]="auto"
+                  />
+                  <mat-autocomplete #auto="matAutocomplete">
+                    @for (option of filteredOptions | async; track option) {
+                    <mat-option [value]="option">{{ option }}</mat-option>
+                    }
+                  </mat-autocomplete>
+                </mat-form-field>
               </div>
-              <div class="form-outline mb-4">
+              <div class="form-outline">
                 <label class="form-label" for="typeAnswerX-2">Paper</label>
-                <input
-                  type="text"
-                  id="typeAnswerX-2"
-                  class="form-control form-control-lg"
-                  placeholder="paper"
-                  formControlName="paper"
-                />
+                <mat-form-field class="example-full-width">
+                  <input
+                    type="text"
+                    placeholder="paper"
+                    aria-label="Number"
+                    matInput
+                    [formControl]="myControl"
+                    formControlName="paper"
+                    [matAutocomplete]="auto"
+                  />
+                  <mat-autocomplete #auto="matAutocomplete">
+                    @for (option of filteredOptions | async; track option) {
+                    <mat-option [value]="option">{{ option }}</mat-option>
+                    }
+                  </mat-autocomplete>
+                </mat-form-field>
               </div>
-              <div class="form-outline mb-4">
+              <div class="form-outline">
                 <label class="form-label" for="typeAnswerX-2">topicName</label>
-                <input
-                  type="text"
-                  id="typeAnswerX-2"
-                  class="form-control form-control-lg"
-                  placeholder="topicName"
-                  formControlName="topicName"
-                />
+
+                <mat-form-field class="example-full-width">
+                  <input
+                    type="text"
+                    placeholder="topicName"
+                    aria-label="Number"
+                    matInput
+                    [formControl]="myControl"
+                    formControlName="topicName"
+                    [matAutocomplete]="auto"
+                  />
+                  <mat-autocomplete #auto="matAutocomplete">
+                    @for (option of filteredOptions | async; track option) {
+                    <mat-option [value]="option">{{ option }}</mat-option>
+                    }
+                  </mat-autocomplete>
+                </mat-form-field>
               </div>
-              <div class="form-outline mb-4">
+              <div class="form-outline">
                 <label class="form-label" for="typeAnswerX-2"
                   >SubtopicName
                 </label>
-                <input
-                  type="text"
-                  id="typeAnswerX-2"
-                  class="form-control form-control-lg"
-                  placeholder="SubtopicName"
-                  formControlName="subtopicName"
-                />
+
+                <mat-form-field class="example-full-width">
+                  <input
+                    type="text"
+                    placeholder="subtopicName"
+                    aria-label="Number"
+                    matInput
+                    [formControl]="myControl"
+                    formControlName="subtopicName"
+                    [matAutocomplete]="auto"
+                  />
+                  <mat-autocomplete #auto="matAutocomplete">
+                    @for (option of filteredOptions | async; track option) {
+                    <mat-option [value]="option">{{ option }}</mat-option>
+                    }
+                  </mat-autocomplete>
+                </mat-form-field>
               </div>
 
               <button

@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 
 const Schema = mongoose.Schema
 
-const answerSchema = new Schema({
+const topicSchema = new Schema({
     _id: { type: mongoose.Types.ObjectId, auto: true },
     testCode: { type: String, required: true },
     number: { type: Number, required: true },
@@ -17,7 +17,7 @@ const answerSchema = new Schema({
     versionKey: false
 })
 
-const answers = mongoose.model("answers", answerSchema);
-module.exports = answers
+const topic = mongoose.model("topics", topicSchema);
+module.exports = topic
 
 

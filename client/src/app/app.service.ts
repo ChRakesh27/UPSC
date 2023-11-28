@@ -12,6 +12,9 @@ export class AppService {
 
   constructor(private httpClient: HttpClient) { }
 
+  getAllToppers(): Observable<any> {
+    return this.httpClient.get<any>(this.API_HOST + "/toppers")
+  }
 
 
 

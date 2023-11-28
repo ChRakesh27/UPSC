@@ -7,7 +7,6 @@ import {
   ReactiveFormsModule
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { ServiceService } from '../service.service';
 
 @Component({
   selector: 'app-topper',
@@ -18,7 +17,7 @@ import { ServiceService } from '../service.service';
 })
 export class TopperComponent implements OnInit {
   topperForm!: FormGroup;
-  constructor(private service: ServiceService) { }
+  constructor() { }
 
   ngOnInit(): void {
 

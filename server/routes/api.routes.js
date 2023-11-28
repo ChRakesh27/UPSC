@@ -1,10 +1,10 @@
 const topperRouter = require("../controller/topper.controller")
-const answerRouter = require("../controller/answer.controller")
+const topicRouter = require("../controller/topic.controller")
 const express = require("express")
 
 const router = express.Router()
 
 router.use('/toppers', topperRouter)
-router.use('/answers', answerRouter)
+router.use('/topics', topicRouter)
 
 module.exports = router;

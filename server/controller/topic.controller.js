@@ -1,12 +1,14 @@
 const express = require("express")
-const answers = require("../model/answers.model")
+const topics = require("../model/topic.model")
+const topper = require("../model/topper.model")
 const router = express.Router()
 
 
 router.get('/', async (req, res) => {
     try {
-        const docs = await answers.find();
-        res.send(docs)
+        const topperDetails = await topper.find().select({ name: 1, rank: 1 }).exec()
+        const docs = await topics.find();
+        // res.send(docs)
     } catch (error) {
         res.send(error)
     }
@@ -16,7 +18,7 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     try {
-        const docs = await answers.findById(req.params.id)
+        const docs = await topics.findById(req.params.id)
         res.send(docs)
     } catch (error) {
         res.send(error)
@@ -26,12 +28,15 @@ router.get('/:id', async (req, res) => {
 router.post("/", async (req, res) => {
     try {
         const data = req.body
-        const docs = await answers.create(data)
+        const docs = await topics.create(data)
         res.send(docs)
     } catch (err) {
         res.send(err)
     }
 })
+
+
+
 
 
 module.exports = router;
