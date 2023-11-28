@@ -25,6 +25,7 @@ router.get('/:id', async (req, res) => {
 
 router.post("/", async (req, res) => {
     try {
+        const data = req.body
         const docs = await answers.create(data)
         res.send(docs)
     } catch (err) {
@@ -34,3 +35,5 @@ router.post("/", async (req, res) => {
 
 
 module.exports = router;
+
+
