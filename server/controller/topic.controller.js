@@ -1,20 +1,20 @@
 const express = require("express")
 const topics = require("../model/topic.model")
-const topper = require("../model/topper.model")
 const router = express.Router()
 
 
 router.get('/', async (req, res) => {
     try {
-        const topperDetails = await topper.find().select({ name: 1, rank: 1 }).exec()
-        const docs = await topics.find();
-        // res.send(docs)
+        const filter = {}
+        if (req.query.id)
+            filter['written'] = req.query.id
+
+        const docs = await topics.find(filter);
+        res.send(docs)
     } catch (error) {
         res.send(error)
     }
 })
-
-
 
 router.get('/:id', async (req, res) => {
     try {

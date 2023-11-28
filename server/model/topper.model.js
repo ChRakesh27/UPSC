@@ -22,6 +22,6 @@ const topperSchema = new Schema({
     versionKey: false
 })
 
-const question = mongoose.model("topper", topperSchema);
-module.exports = question
+const topper = mongoose.model("topper", topperSchema);
+module.exports = topper
 
