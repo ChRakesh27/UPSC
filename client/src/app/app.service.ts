@@ -16,7 +16,6 @@ export class AppService {
     return this.httpClient.get<any>(this.API_HOST + "/toppers")
   }
 
-
   getAllTopics(): Observable<any> {
     return this.httpClient.get<any>(this.API_HOST + "/topics")
   }
@@ -29,4 +28,7 @@ export class AppService {
     return this.httpClient.get<any>(`${this.API_HOST}/topics/${id}`)
   }
 
+  getTopperById(id: String): Observable<any> {
+    return this.httpClient.get<any>(`${this.API_HOST}/toppers/${id}`)
+  }
 }

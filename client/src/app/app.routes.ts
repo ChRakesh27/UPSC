@@ -9,12 +9,6 @@ export const routes: Routes = [
     {
         path: 'toppers',
         component: TopperListComponent,
-        // children: [
-        //     {
-        //         path: ":id",
-        //         component: TopicListComponent
-        //     }
-        // ]
     },
     {
         path: "toppers/:id",
