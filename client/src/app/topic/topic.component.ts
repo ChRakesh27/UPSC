@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ITopic } from '../model/ITopic.model';
+import { AppService } from '../app.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-topic',
@@ -8,6 +11,20 @@ import { CommonModule } from '@angular/common';
   templateUrl: './topic.component.html',
   styleUrl: './topic.component.css'
 })
-export class TopicComponent {
+export class TopicComponent implements OnInit {
+  topic: ITopic | undefined;
+  constructor(private service: AppService, private router: ActivatedRoute) { }
 
+  ngOnInit(): void {
+    this.router.params.subscribe((params) => {
+      console.log("🚀 ~ params:", params["id"])
+      if (!params["id"]) {
+        return
+      }
+      this.service.getTopicById(params["id"]).subscribe((data) => {
+        this.topic = data
+        // console.log("🚀 ~ data:", data)
+      })
+    })
+  }
 }

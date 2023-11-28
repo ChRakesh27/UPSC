@@ -19,6 +19,7 @@ export class TopicListComponent implements OnInit {
   constructor(private service: AppService, private router: ActivatedRoute) { }
   ngOnInit(): void {
     this.router.params.subscribe((params) => {
+      console.log("🚀 ~ params:", params["id"])
       if (!params["id"]) {
         return
       }
@@ -29,7 +30,6 @@ export class TopicListComponent implements OnInit {
 
       this.service.getTopicById(this.selectedTopicId).subscribe(data => {
         this.selectedTopic = data
-        console.log("🚀 ~ data:", data)
       })
 
 

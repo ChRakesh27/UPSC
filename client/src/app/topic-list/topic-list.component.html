@@ -11,10 +11,10 @@
               >
                 Topics
               </a>
-              @for (topic of topics; track $index) {
+              @for(topic of topics; track $index) {
               <div class="d-flex m-1 me-5">
                 <button
-                  [routerLink]="['/topic', topic._id]"
+                  [routerLink]="['topics', topic._id]"
                   class="list-group-item list-group-item-action px-3 border-0"
                 >
                   {{ topic.topicName }}

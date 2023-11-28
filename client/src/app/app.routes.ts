@@ -6,10 +6,25 @@ import { TopperListComponent } from './topper-list/topper-list.component';
 import { TopicComponent } from './topic/topic.component';
 
 export const routes: Routes = [
-    { path: 'topicList/:id', component: TopicListComponent },
-    { path: 'topperList', component: TopperListComponent },
+    {
+        path: 'toppers',
+        component: TopperListComponent,
+        // children: [
+        //     {
+        //         path: ":id",
+        //         component: TopicListComponent
+        //     }
+        // ]
+    },
+    {
+        path: "toppers/:id",
+        component: TopicListComponent
+    },
+    {
+        path: "toppers/:id/topics/:id",
+        component: TopicComponent
+    },
     { path: 'add-topper', component: TopperComponent },
     { path: 'add-topics', component: AddTopicsComponent },
-    { path: 'topic', component: TopicComponent },
-    { path: '', redirectTo: '/add-topper', pathMatch: 'full' }
+    { path: '', redirectTo: '/toppers', pathMatch: 'full' },
 ];

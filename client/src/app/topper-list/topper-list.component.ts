@@ -12,11 +12,11 @@ import { RouterLink } from '@angular/router';
 })
 export class TopperListComponent implements OnInit {
   title = 'client';
-  toppers_List: any;
+  toppers: any;
   constructor(private service: AppService) { }
   ngOnInit(): void {
     this.service.getAllToppers().subscribe(list => {
-      this.toppers_List = list
+      this.toppers = list
     })
   }
 }
