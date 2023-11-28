@@ -7,7 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class AppService {
 
-  API_HOST = 'http://localhost:3000/api';
+  // API_HOST = 'http://localhost:3000/api';
+  API_HOST = 'https://upsc-server.onrender.com';
 
   constructor(private httpClient: HttpClient) { }
 
