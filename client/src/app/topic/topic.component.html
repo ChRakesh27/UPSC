@@ -1,15 +1,14 @@
-<button class="btn btn-primary mb-3" routerLink="">back</button>
-<a class="list-group-item list-group-item-action px-3 border-0 active">
-  Topic
-</a>
-
-<div class="d-flex m-1 me-5">
-  {{ topic?.testCode }}<br />
-  {{ topic?.number }}<br />
-  {{ topic?.question }}<br />
-  {{ topic?.answer }}<br />
+<button class="btn btn-primary mb-3" [routerLink]="['../../']">back</button>
+<h3 class="list-group-item px-3 border-0 active rounded text-center">
+  {{ topic?.topicName }}
+</h3>
+<div class="d-flex m-1 me-5 text-center">
+  <p class="">{{ topic?.testCode }}</p>
+  <p class="">{{ topic?.number }}</p>
+  <p class="">{{ topic?.question }}</p>
+  <p class="">{{ topic?.answer }}</p>
   <!-- {{ topic?.images }}<br> -->
-  {{ topic?.paper }}<br />
-  {{ topic?.topicName }}<br />
-  {{ topic?.subtopicName }}<br />
+  <p class="">{{ topic?.paper }}</p>
+  <p class="">{{ topic?.topicName }}</p>
+  <p class="">{{ topic?.subtopicName }}</p>
 </div>

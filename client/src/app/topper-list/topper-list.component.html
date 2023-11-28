@@ -1,17 +1,17 @@
 <button class="btn btn-primary mb-3" routerLink="/addToppers">
   Add Topper
 </button>
-<a class="list-group-item list-group-item-action px-3 border-0 active">
+<h3 class="list-group-item px-3 border-0 rounded active text-center">
   Toppers
-</a>
+</h3>
 @for (topper of toppers; track $index) {
 <div class="d-flex m-1 me-5">
   <button
     [routerLink]="['/toppers', topper._id]"
-    class="list-group-item list-group-item-action px-3 border-0"
+    class="list-group-item list-group-item-action px-3 border-2"
   >
     {{ topper.name }}
   </button>
-  <a href="#" target="_blank"> View </a>
+  <button class="btn btn-primary">View</button>
 </div>
 }
