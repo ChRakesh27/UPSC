@@ -5,6 +5,7 @@ const router = express.Router()
 router.post("/", async (req, res) => {
     try {
         const data = req.body;
+        console.log("🚀 ~ data:", data)
         const docs = await topper.create(data)
         res.send(docs)
     } catch (err) {
@@ -21,5 +22,16 @@ router.get('/', async (req, res) => {
         res.send(err)
     }
 })
+
+router.get('/:id', async (req, res) => {
+    try {
+        const docs = await topper.findById(req.params.id)
+        res.send(docs)
+    } catch (err) {
+        res.send(err)
+    }
+})
+
+
 
 module.exports = router

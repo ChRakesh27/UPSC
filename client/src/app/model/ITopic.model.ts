@@ -1,4 +1,4 @@
-export interface Answer {
+export interface ITopic {
     _id: string;
     testCode: string,
     number: Number,

@@ -9,16 +9,17 @@
               <a
                 class="list-group-item list-group-item-action px-3 border-0 active"
               >
-                Topics
+                Toppers
               </a>
-              @for (topic of topics; track $index) {
+              @for (topper of toppers_List; track $index) {
               <div class="d-flex m-1 me-5">
                 <button
-                  [routerLink]="['/topic', topic['_id']]"
+                  [routerLink]="['/topicList', topper._id]"
                   class="list-group-item list-group-item-action px-3 border-0"
                 >
-                  {{ topic.topicName }}
+                  {{ topper.name }}
                 </button>
+                <a href="#" target="_blank"> View </a>
               </div>
               }
             </div>
