@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AppService } from '../app.service';
 import { run } from 'node:test';
+import { ITopic } from '../model/ITopic.model';
 
 @Component({
   selector: 'app-topic-list',
@@ -12,7 +13,7 @@ import { run } from 'node:test';
   styleUrl: './topic-list.component.css'
 })
 export class TopicListComponent implements OnInit {
-  topics = []
+  topics: ITopic[] = []
   selectedTopic = {}
   selectedTopicId = ""
   constructor(private service: AppService, private router: ActivatedRoute) { }

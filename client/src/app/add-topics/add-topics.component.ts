@@ -18,7 +18,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 
 
 @Component({
-  selector: 'app-add-answers',
+  selector: 'app-add-topics',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterLink,
     FormsModule,
@@ -27,10 +27,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatAutocompleteModule,
     ReactiveFormsModule,
     AsyncPipe],
-  templateUrl: './add-answers.component.html',
-  styleUrl: './add-answers.component.css'
+  templateUrl: './add-topics.component.html',
+  styleUrl: './add-topics.component.css'
 })
-export class AddAnswersComponent implements OnInit {
+export class AddTopicsComponent implements OnInit {
   answerForm!: FormGroup;
   myControl = new FormControl('');
   options: string[] = ['One', 'Two', 'Three'];
