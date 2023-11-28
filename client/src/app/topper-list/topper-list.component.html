@@ -1,17 +1,30 @@
-<button class="btn btn-primary mb-3" routerLink="/addToppers">
+<button class="btn btn-primary mb-3 me-3" routerLink="/add-toppers">
   Add Topper
 </button>
-<h3 class="list-group-item px-3 border-0 rounded active text-center">
-  Toppers
-</h3>
-@for (topper of toppers; track $index) {
-<div class="d-flex m-1 me-5">
-  <button
-    [routerLink]="['/toppers', topper._id]"
-    class="list-group-item list-group-item-action px-3 border-2"
-  >
-    {{ topper.name }}
-  </button>
-  <button class="btn btn-primary">View</button>
+<button class="btn btn-primary me-3 mb-3" routerLink="/add-topics">
+  Add Topic
+</button>
+
+<div class="list-group list-group-light">
+  <h3 class="list-group-item px-3 border-0 rounded active text-center">
+    Toppers
+  </h3>
+  @for (topper of toppers; track $index) {
+  <div class="d-flex m-1">
+    <button
+      [routerLink]="['/toppers', topper._id]"
+      class="list-group-item list-group-item-action px-3 border-2 me-1"
+    >
+      {{ topper.name }}
+    </button>
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+    >
+      View
+    </button>
+  </div>
+  }
 </div>
-}
