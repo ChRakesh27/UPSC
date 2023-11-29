@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppService } from '../app.service';
 import { RouterLink } from '@angular/router';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import {
+  MatDialog, MatDialogModule,
+} from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { TopperComponent } from '../topper/topper.component';
 @Component({
   selector: 'app-topper-list',
   standalone: true,
@@ -22,12 +25,12 @@ export class TopperListComponent implements OnInit {
     })
   }
 
-  openDialog() {
-    // const dialogRef = this.dialog.open(DialogContentExampleDialog);
+  openDialog(topper: any) {
+    const dialogRef = this.dialog.open(TopperComponent, { data: topper });
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log(`Dialog result: ${result}`);
-    // });
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
 

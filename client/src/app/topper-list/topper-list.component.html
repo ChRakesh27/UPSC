@@ -17,12 +17,7 @@
     >
       {{ topper.name }}
     </button>
-    <button
-      type="button"
-      class="btn btn-primary"
-      data-bs-toggle="modal"
-      data-bs-target="#exampleModal"
-    >
+    <button mat-button class="btn btn-primary" (click)="openDialog(topper)">
       View
     </button>
   </div>
