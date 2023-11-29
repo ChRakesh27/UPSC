@@ -64,7 +64,7 @@ export class AddTopicsComponent implements OnInit {
   obsTopicOpts: Observable<string[]> | undefined;
   obsSubTopicOpts: Observable<string[]> | undefined;
 
-  constructor(private service: AppService) {}
+  constructor(private service: AppService) { }
 
   ngOnInit(): void {
     this.service.getAllToppers().subscribe((data) => {
@@ -162,7 +162,11 @@ export class AddTopicsComponent implements OnInit {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = (evt: any) => {
-        this.fileList.push({ name: file.name, base64: evt.target.result });
+        if (file.size <= 1024 * 1024) {
+          this.fileList.push({ name: file.name, base64: evt.target.result });
+        } else {
+          alert("file size large filename: " + file.name)
+        };
       };
 
       reader.onerror = (evt: any) => {
@@ -173,13 +177,10 @@ export class AddTopicsComponent implements OnInit {
 
   onPaste(event: any) {
     const items = event.clipboardData.items;
+
     for (const item of items) {
-      let blob = null;
       if (item.type.indexOf('image') === 0) {
-        blob = item.getAsFile();
-      }
-      // load image if there is a pasted image
-      if (blob !== null) {
+        const blob = item.getAsFile();
         const filename = prompt(
           'Please enter file name:',
           `answer-${new Date().getTime()}.jpg`,
@@ -191,7 +192,11 @@ export class AddTopicsComponent implements OnInit {
 
         const reader = new FileReader();
         reader.onload = (evt: any) => {
-          this.fileList.push({ name: filename, base64: evt.target.result });
+          if (fileFromBlob.size <= 1024 * 1024) {
+            this.fileList.push({ name: filename, base64: evt.target.result });
+          } else {
+            alert("file size large")
+          };
         };
 
         reader.onerror = (evt: any) => {

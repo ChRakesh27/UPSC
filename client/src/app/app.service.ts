@@ -10,7 +10,7 @@ export class AppService {
   // API_HOST = 'http://localhost:3000/api';
   API_HOST = 'https://upsc-server.onrender.com/api';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   getAllToppers(): Observable<any> {
     return this.httpClient.get<any>(this.API_HOST + '/toppers');
