@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ITopper } from './model/ITopper.model';
 
 @Injectable({
   providedIn: 'root'
@@ -32,9 +33,11 @@ export class AppService {
     return this.httpClient.get<any>(`${this.API_HOST}/toppers/${id}`)
   }
 
-
   addTopic(data: any): Observable<any> {
     return this.httpClient.post<any>(`${this.API_HOST}/topics`, data)
   }
 
+  addTopper(data: any): Observable<any> {
+    return this.httpClient.post<any>(this.API_HOST + "/toppers", data)
+  }
 }

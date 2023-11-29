@@ -144,7 +144,9 @@ export class AddTopicsComponent implements OnInit {
 
       console.log(payload)
 
-      this.service.addTopic(payload).subscribe(() => { })
+      this.service.addTopic(payload).subscribe(() => {
+        this.answerForm.reset()
+      })
     }
   }
 
