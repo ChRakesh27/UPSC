@@ -7,19 +7,19 @@ import { TopicComponent } from './topic/topic.component';
 import { AddTopperComponent } from './add-topper/add-topper.component';
 
 export const routes: Routes = [
-    {
-        path: 'toppers',
-        component: TopperListComponent,
-    },
-    {
-        path: "toppers/:id",
-        component: TopicListComponent
-    },
-    {
-        path: "toppers/:id/topics/:id",
-        component: TopicComponent
-    },
-    { path: 'add-toppers', component: AddTopperComponent },
-    { path: 'add-topics', component: AddTopicsComponent },
-    { path: '', redirectTo: '/toppers', pathMatch: 'full' },
+  {
+    path: 'toppers',
+    component: TopperListComponent,
+  },
+  {
+    path: 'toppers/:id',
+    component: TopicListComponent,
+  },
+  {
+    path: 'toppers/:id/topics/:id',
+    component: TopicComponent,
+  },
+  { path: 'add-toppers', component: AddTopperComponent },
+  { path: 'add-topics', component: AddTopicsComponent },
+  { path: '', redirectTo: '/toppers', pathMatch: 'full' },
 ];

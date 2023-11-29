@@ -29,25 +29,36 @@
     <textarea matInput formControlName="answer"></textarea>
   </mat-form-field>
   <div class="form-outline mb-4">
-    <label class="form-label">images</label>
+    <label class="form-label">Images </label>
+    <label for="files" class="btn btn-outline-primary ms-3"
+      >select image from system</label
+    >
+    <input
+      id="files"
+      style="visibility: hidden"
+      type="file"
+      (change)="onFileSelect($event)"
+      accept="image/*"
+      multiple
+    />
     <div class="container" (paste)="onPaste($event)" tabindex="0">
       <div cdkDropList class="images-list" (cdkDropListDropped)="drop($event)">
         @for (file of fileList; track $index) {
-        <div class="images-box" cdkDrag>
-          {{ file.name }}
-          <img
-            *cdkDragPreview
-            [src]="file.base64"
-            [alt]="file.name"
-            width="300px"
-          />
-          <button
-            type="button"
-            class="btn-close"
-            (click)="onRemove($index)"
-            aria-label="Close"
-          ></button>
-        </div>
+          <div class="images-box" matTooltip="drag to preview image" cdkDrag>
+            {{ file.name }}
+            <img
+              *cdkDragPreview
+              [src]="file.base64"
+              [alt]="file.name"
+              width="300px"
+            />
+            <button
+              type="button"
+              class="btn-close"
+              (click)="onRemove($index)"
+              aria-label="Close"
+            ></button>
+          </div>
         }
       </div>
     </div>
@@ -70,7 +81,7 @@
               [displayWith]="displayFn"
             >
               @for (option of obsWrittenByOpts | async; track option) {
-              <mat-option [value]="option">{{ option.name }}</mat-option>
+                <mat-option [value]="option">{{ option.name }}</mat-option>
               }
             </mat-autocomplete>
           </mat-form-field>
@@ -89,7 +100,7 @@
             />
             <mat-autocomplete #autoPaper="matAutocomplete">
               @for (option of obsPaperOpts | async; track option) {
-              <mat-option [value]="option">{{ option }}</mat-option>
+                <mat-option [value]="option">{{ option }}</mat-option>
               }
             </mat-autocomplete>
           </mat-form-field>
@@ -108,7 +119,7 @@
             />
             <mat-autocomplete #autoTopic="matAutocomplete">
               @for (option of obsTopicOpts | async; track option) {
-              <mat-option [value]="option">{{ option }}</mat-option>
+                <mat-option [value]="option">{{ option }}</mat-option>
               }
             </mat-autocomplete>
           </mat-form-field>
@@ -127,7 +138,7 @@
             />
             <mat-autocomplete #autoSubTop="matAutocomplete">
               @for (option of obsSubTopicOpts | async; track option) {
-              <mat-option [value]="option">{{ option }}</mat-option>
+                <mat-option [value]="option">{{ option }}</mat-option>
               }
             </mat-autocomplete>
           </mat-form-field>

@@ -10,30 +10,30 @@ import { ITopic } from '../model/ITopic.model';
   standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './topic-list.component.html',
-  styleUrl: './topic-list.component.css'
+  styleUrl: './topic-list.component.css',
 })
 export class TopicListComponent implements OnInit {
-  topics: ITopic[] = []
-  selectedTopic = {}
-  selectedTopicId = ""
-  constructor(private service: AppService, private router: ActivatedRoute) { }
+  topics: ITopic[] = [];
+  selectedTopic = {};
+  selectedTopicId = '';
+  constructor(
+    private service: AppService,
+    private router: ActivatedRoute,
+  ) {}
   ngOnInit(): void {
     this.router.params.subscribe((params) => {
-      console.log("🚀 ~ params:", params["id"])
-      if (!params["id"]) {
-        return
+      console.log('🚀 ~ params:', params['id']);
+      if (!params['id']) {
+        return;
       }
-      this.service.getTopicsWrittenByTopper(params["id"]).subscribe(data => {
-        this.topics = data
-        this.selectedTopicId = data[0]
-      })
+      this.service.getTopicsWrittenByTopper(params['id']).subscribe((data) => {
+        this.topics = data;
+        this.selectedTopicId = data[0];
+      });
 
-      this.service.getTopicById(this.selectedTopicId).subscribe(data => {
-        this.selectedTopic = data
-      })
-
-
-
-    })
+      this.service.getTopicById(this.selectedTopicId).subscribe((data) => {
+        this.selectedTopic = data;
+      });
+    });
   }
 }

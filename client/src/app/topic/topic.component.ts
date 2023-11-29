@@ -9,21 +9,24 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
   standalone: true,
   imports: [CommonModule, RouterLink],
   templateUrl: './topic.component.html',
-  styleUrl: './topic.component.css'
+  styleUrl: './topic.component.css',
 })
 export class TopicComponent implements OnInit {
   topic: ITopic | undefined;
-  constructor(private service: AppService, private router: ActivatedRoute) { }
+  constructor(
+    private service: AppService,
+    private router: ActivatedRoute,
+  ) {}
 
   ngOnInit(): void {
     this.router.params.subscribe((params) => {
-      console.log("🚀 ~ params:", params["id"])
-      if (!params["id"]) {
-        return
+      console.log('🚀 ~ params:', params['id']);
+      if (!params['id']) {
+        return;
       }
-      this.service.getTopicById(params["id"]).subscribe((data) => {
-        this.topic = data
-      })
-    })
+      this.service.getTopicById(params['id']).subscribe((data) => {
+        this.topic = data;
+      });
+    });
   }
 }

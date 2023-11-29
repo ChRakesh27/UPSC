@@ -5,14 +5,14 @@
   >
     Topics
   </h3>
-  @for(topic of topics; track $index) {
-  <div class="d-flex m-1 me-5">
-    <button
-      [routerLink]="['topics', topic._id]"
-      class="list-group-item list-group-item-action px-3 border-2"
-    >
-      {{ topic.topicName }}
-    </button>
-  </div>
+  @for (topic of topics; track $index) {
+    <div class="d-flex m-1 me-5">
+      <button
+        [routerLink]="['topics', topic._id]"
+        class="list-group-item list-group-item-action px-3 border-2"
+      >
+        {{ topic.topicName }}
+      </button>
+    </div>
   }
 </div>

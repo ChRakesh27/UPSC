@@ -5,7 +5,6 @@ const router = express.Router()
 router.post("/", async (req, res) => {
     try {
         const data = req.body;
-        console.log("🚀 ~ data:", data)
         const docs = await topper.create(data)
         res.send(docs)
     } catch (err) {

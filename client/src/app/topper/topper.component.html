@@ -6,12 +6,11 @@
     </tr>
   </thead>
   <tbody>
-    @for(items of topperColumn; track $index){
-
-    <tr class="m-5 p-5">
-      <td>{{ items }}</td>
-      <th>{{ topper[items] }}</th>
-    </tr>
+    @for (items of topperColumn; track $index) {
+      <tr class="m-5 p-5">
+        <td>{{ items }}</td>
+        <th>{{ topper[items] }}</th>
+      </tr>
     }
   </tbody>
 </table>

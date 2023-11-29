@@ -4,7 +4,7 @@ import {
   FormGroup,
   FormControl,
   Validators,
-  ReactiveFormsModule
+  ReactiveFormsModule,
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -13,19 +13,21 @@ import { AppService } from '../app.service';
 @Component({
   selector: 'app-add-topper',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule,
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
     RouterLink,
     MatFormFieldModule,
-    MatInputModule,],
+    MatInputModule,
+  ],
   templateUrl: './add-topper.component.html',
-  styleUrl: './add-topper.component.css'
+  styleUrl: './add-topper.component.css',
 })
 export class AddTopperComponent {
   topperForm!: FormGroup;
-  constructor(private service: AppService) { }
+  constructor(private service: AppService) {}
 
   ngOnInit(): void {
-
     this.topperForm = new FormGroup({
       name: new FormControl(null, Validators.required),
       rank: new FormControl(null, Validators.required),
@@ -41,17 +43,14 @@ export class AddTopperComponent {
       optional_1_marks: new FormControl(null, Validators.required),
       optional_2_marks: new FormControl(null, Validators.required),
       remarks: new FormControl(null, Validators.required),
-
     });
   }
-
-
 
   submit() {
     if (this.topperForm.valid) {
       this.service.addTopper(this.topperForm.value).subscribe(() => {
-        this.topperForm.reset()
-      })
+        this.topperForm.reset();
+      });
     }
   }
 }
