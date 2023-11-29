@@ -1,63 +1,47 @@
 <button class="btn btn-primary mb-3" routerLink="">back</button>
 <h3 class="mb-5 text-center">Add Topic</h3>
 <form [formGroup]="answerForm">
+  <mat-form-field class="topic-autofill">
+    <mat-label>Test Code</mat-label>
+    <input type="text" matInput formControlName="testCode" />
+  </mat-form-field>
+  <mat-form-field class="topic-autofill">
+    <mat-label>Question Number</mat-label>
+    <input type="number" matInput formControlName="number" />
+  </mat-form-field>
+  <mat-form-field class="topic-autofill">
+    <mat-label>Question Text</mat-label>
+    <input type="text" matInput formControlName="question" />
+  </mat-form-field>
+  <mat-form-field class="topic-textarea">
+    <mat-label>Answer</mat-label>
+    <textarea matInput formControlName="answer"></textarea>
+  </mat-form-field>
   <div class="form-outline mb-4">
-    <label class="form-label" for="typeTitleX-2">TestCode</label>
-    <input
-      type="text"
-      id="typeTitleX-2"
-      class="form-control form-control-lg"
-      placeholder="testCode"
-      formControlName="testCode"
-    />
-  </div>
-  <div class="form-outline mb-4">
-    <label class="form-label" for="typeQuestionTextX-2">Question number</label>
-    <input
-      type="number"
-      id="typeQuestionTextX-2"
-      class="form-control form-control-lg"
-      placeholder="Question number"
-      formControlName="number"
-    />
-  </div>
-  <div class="form-outline mb-4">
-    <label class="form-label" for="typeAnswerX-2">Question</label>
-    <input
-      type="text"
-      id="typeAnswerX-2"
-      class="form-control form-control-lg"
-      placeholder="question"
-      formControlName="question"
-    />
-  </div>
-  <div class="form-outline mb-4">
-    <label class="form-label" for="typeAnswerX-2">Answer</label>
-    <textarea
-      type="date"
-      id="typeAnswerX-2"
-      class="form-control form-control-lg"
-      placeholder="answer"
-      formControlName="answer"
-    ></textarea>
-  </div>
-  <div class="form-outline mb-4">
-    <label class="form-label" for="typeAnswerX-2">images</label>
-    <input
-      type="file"
-      id="typeAnswerX-2"
-      class="form-control form-control-lg"
-      placeholder="images"
-      formControlName="images"
-    />
+    <label class="form-label">images</label>
+    <div class="container" (paste)="onPaste($event)" tabindex="0">
+      <div cdkDropList class="images-list" (cdkDropListDropped)="drop($event)">
+        @for (file of fileList; track $index) {
+        <div class="images-box" cdkDrag>
+          {{ file.name }}
+          <img
+            *cdkDragPreview
+            [src]="file.base64"
+            [alt]="file.name"
+            width="300px"
+          />
+          <button (click)="onRemove($index)">X</button>
+        </div>
+        }
+      </div>
+    </div>
   </div>
   <div class="form-outline">
     <label class="form-label" for="typeAnswerX-2">written By</label>
-    <mat-form-field class="example-full-width">
+    <mat-form-field class="topic-autofill">
       <input
         type="text"
         placeholder="Pick one"
-        aria-label="Number"
         matInput
         [formControl]="myControl"
         formControlName="written"
@@ -71,12 +55,11 @@
     </mat-form-field>
   </div>
   <div class="form-outline">
-    <label class="form-label" for="typeAnswerX-2">Paper</label>
-    <mat-form-field class="example-full-width">
+    <label class="form-label">Paper</label>
+    <mat-form-field class="topic-autofill">
       <input
         type="text"
         placeholder="paper"
-        aria-label="Number"
         matInput
         [formControl]="myControl"
         formControlName="paper"
@@ -90,13 +73,11 @@
     </mat-form-field>
   </div>
   <div class="form-outline">
-    <label class="form-label" for="typeAnswerX-2">topicName</label>
-
-    <mat-form-field class="example-full-width">
+    <label class="form-label">topicName</label>
+    <mat-form-field class="topic-autofill">
       <input
         type="text"
         placeholder="topicName"
-        aria-label="Number"
         matInput
         [formControl]="myControl"
         formControlName="topicName"
@@ -110,13 +91,11 @@
     </mat-form-field>
   </div>
   <div class="form-outline">
-    <label class="form-label" for="typeAnswerX-2">SubtopicName </label>
-
-    <mat-form-field class="example-full-width">
+    <label class="form-label">SubtopicName </label>
+    <mat-form-field class="topic-autofill">
       <input
         type="text"
         placeholder="subtopicName"
-        aria-label="Number"
         matInput
         [formControl]="myControl"
         formControlName="subtopicName"

@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
 import {
+  CdkDrag,
+  CdkDragDrop,
+  CdkDragPreview,
+  CdkDropList,
+  moveItemInArray,
+} from '@angular/cdk/drag-drop';
+import {
   FormGroup,
   FormControl,
   Validators,
@@ -7,7 +14,6 @@ import {
   FormsModule
 } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
@@ -15,7 +21,6 @@ import { AsyncPipe } from '@angular/common';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
 
 @Component({
   selector: 'app-add-topics',
@@ -26,16 +31,26 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatInputModule,
     MatAutocompleteModule,
     ReactiveFormsModule,
-    AsyncPipe],
+    AsyncPipe,
+    CdkDropList,
+    CdkDrag,
+    CdkDragPreview],
   templateUrl: './add-topics.component.html',
   styleUrl: './add-topics.component.css'
 })
+
 export class AddTopicsComponent implements OnInit {
   answerForm!: FormGroup;
   myControl = new FormControl('');
   options: string[] = ['One', 'Two', 'Three'];
 
   filteredOptions: Observable<string[]> | undefined;
+  drop(event: CdkDragDrop<{ title: string; poster: string }[]>) {
+    moveItemInArray(this.fileList, event.previousIndex, event.currentIndex);
+  }
+
+  fileList: { name: string; base64: File }[] = [];
+
   constructor() { }
 
   ngOnInit(): void {
@@ -75,4 +90,38 @@ export class AddTopicsComponent implements OnInit {
       //   });
     }
   }
+  //--------------------------------------------------------------------------
+
+  onPaste(event: any) {
+    const items = event.clipboardData.items;
+    console.log({ items });
+    for (const item of items) {
+      console.log(item.type);
+      let blob = null;
+      if (item.type.indexOf('image') === 0) {
+        blob = item.getAsFile();
+      }
+
+      // load image if there is a pasted image
+      if (blob !== null) {
+        const filename = prompt(
+          'Please enter file name:',
+          `answer-${new Date().getTime()}.jpg`
+        );
+        const fileFromBlob: File = new File([blob], filename);
+
+        const reader = new FileReader();
+        reader.onload = (evt: any) => {
+          console.log(evt.target.result);
+          this.fileList.push({ name: filename, base64: evt.target.result });
+        };
+        reader.readAsDataURL(blob);
+      }
+    }
+  }
+  onRemove(index) {
+    this.fileList.splice(index, 1);
+  }
+
+
 }
