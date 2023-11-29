@@ -43,13 +43,15 @@
         type="text"
         placeholder="Pick one"
         matInput
-        [formControl]="myControl"
         formControlName="written"
-        [matAutocomplete]="auto"
+        [matAutocomplete]="autoWrittenBy"
       />
-      <mat-autocomplete #auto="matAutocomplete">
-        @for (option of filteredOptions | async; track option) {
-        <mat-option [value]="option">{{ option }}</mat-option>
+      <mat-autocomplete
+        #autoWrittenBy="matAutocomplete"
+        [displayWith]="displayFn"
+      >
+        @for (option of obsWrittenByOpts | async; track option) {
+        <mat-option [value]="option">{{ option.name }}</mat-option>
         }
       </mat-autocomplete>
     </mat-form-field>
@@ -61,12 +63,11 @@
         type="text"
         placeholder="paper"
         matInput
-        [formControl]="myControl"
         formControlName="paper"
-        [matAutocomplete]="auto"
+        [matAutocomplete]="autoPaper"
       />
-      <mat-autocomplete #auto="matAutocomplete">
-        @for (option of filteredOptions | async; track option) {
+      <mat-autocomplete #autoPaper="matAutocomplete">
+        @for (option of obsPaperOpts | async; track option) {
         <mat-option [value]="option">{{ option }}</mat-option>
         }
       </mat-autocomplete>
@@ -79,30 +80,28 @@
         type="text"
         placeholder="topicName"
         matInput
-        [formControl]="myControl"
         formControlName="topicName"
-        [matAutocomplete]="auto"
+        [matAutocomplete]="autoTopic"
       />
-      <mat-autocomplete #auto="matAutocomplete">
-        @for (option of filteredOptions | async; track option) {
+      <mat-autocomplete #autoTopic="matAutocomplete">
+        @for (option of obsTopicOpts | async; track option) {
         <mat-option [value]="option">{{ option }}</mat-option>
         }
       </mat-autocomplete>
     </mat-form-field>
   </div>
   <div class="form-outline">
-    <label class="form-label">SubtopicName </label>
+    <label class="form-label">SubTopicName </label>
     <mat-form-field class="topic-autofill">
       <input
         type="text"
-        placeholder="subtopicName"
+        placeholder="subTopicName"
         matInput
-        [formControl]="myControl"
         formControlName="subtopicName"
-        [matAutocomplete]="auto"
+        [matAutocomplete]="autoSubTop"
       />
-      <mat-autocomplete #auto="matAutocomplete">
-        @for (option of filteredOptions | async; track option) {
+      <mat-autocomplete #autoSubTop="matAutocomplete">
+        @for (option of obsSubTopicOpts | async; track option) {
         <mat-option [value]="option">{{ option }}</mat-option>
         }
       </mat-autocomplete>

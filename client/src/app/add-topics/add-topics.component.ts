@@ -21,6 +21,8 @@ import { AsyncPipe } from '@angular/common';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { AppService } from '../app.service';
+import { ITopper } from '../model/ITopper.model';
 
 @Component({
   selector: 'app-add-topics',
@@ -41,62 +43,114 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 
 export class AddTopicsComponent implements OnInit {
   answerForm!: FormGroup;
-  myControl = new FormControl('');
-  options: string[] = ['One', 'Two', 'Three'];
 
-  filteredOptions: Observable<string[]> | undefined;
-  drop(event: CdkDragDrop<{ title: string; poster: string }[]>) {
+  drop(event: CdkDragDrop<{ name: string; base64: File }[]>) {
     moveItemInArray(this.fileList, event.previousIndex, event.currentIndex);
   }
 
   fileList: { name: string; base64: File }[] = [];
 
-  constructor() { }
+
+  writtenByOpts: ITopper[] = [];
+  paperOpts: string[] = [];
+  subtopicOpts: string[] = [];
+  topicOpts: string[] = [];
+
+  obsWrittenByOpts: Observable<ITopper[]> | undefined;
+  obsPaperOpts: Observable<string[]> | undefined;
+  obsTopicOpts: Observable<string[]> | undefined;
+  obsSubTopicOpts: Observable<string[]> | undefined;
+
+  constructor(private service: AppService) { }
 
   ngOnInit(): void {
+
+    this.service.getAllToppers().subscribe((data) => {
+      this.writtenByOpts = data
+    })
+    this.service.getAllTopics().subscribe((data) => {
+      for (let item of data) {
+        if (!this.paperOpts.includes(item.paper))
+          this.paperOpts.push(item.paper)
+
+        if (!this.topicOpts.includes(item.topicName))
+          this.topicOpts.push(item.topicName)
+
+        if (!this.subtopicOpts.includes(item.subtopicName))
+          this.subtopicOpts.push(item.subtopicName)
+      }
+      return this.writtenByOpts
+    })
 
     this.answerForm = new FormGroup({
       testCode: new FormControl(null, Validators.required),
       number: new FormControl(null, Validators.required),
-      year: new FormControl(null, Validators.required),
       question: new FormControl(null, Validators.required),
       answer: new FormControl(null, Validators.required),
-      images: new FormControl(null, Validators.required),
+      images: new FormControl([]),
       written: new FormControl(null, Validators.required),
       paper: new FormControl(null, Validators.required),
       topicName: new FormControl(null, Validators.required),
       subtopicName: new FormControl(null, Validators.required),
     });
-    this.filteredOptions = this.myControl.valueChanges.pipe(
+
+    this.obsWrittenByOpts = this.answerForm.get("written").valueChanges.pipe(
       startWith(''),
-      map(value => this._filter(value || '')),
+      map(value => {
+        console.log("🚀 ~ value:", value)
+        const name = typeof value === 'string' ? value : value?.name;
+        return this.writtenByOpts.filter(item => item.name.toLowerCase().includes(name.toLowerCase()))
+      })
     );
+
+    this.obsPaperOpts = this.answerForm.get("paper").valueChanges.pipe(
+      startWith(''),
+      map(value => this.paperOpts.filter(item => item.toLowerCase().includes(value.toLowerCase())))
+    );
+
+    this.obsTopicOpts = this.answerForm.get("topicName").valueChanges.pipe(
+      startWith(''),
+      map(value => this.topicOpts.filter(item => item.toLowerCase().includes(value.toLowerCase())))
+    );
+    this.obsSubTopicOpts = this.answerForm.get("subtopicName").valueChanges.pipe(
+      startWith(''),
+      map(value => this.subtopicOpts.filter(item => item.toLowerCase().includes(value.toLowerCase())))
+    );
+
+
   }
 
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+  displayFn(topper: ITopper): string {
+    console.log(topper)
+    // this.answerForm.controls['written'].setValue(topper._id)
+    return topper && topper.name ? topper.name : '';
   }
 
 
   submit() {
+    console.log(this.answerForm.value)
     if (this.answerForm.valid) {
-      // this.service
-      //   .addQuestion(this.questionForm.value)
-      //   .subscribe(() => {
-      //     this.questionForm.reset();
-      //   });
+
+      const writtenByValue = this.answerForm.get("written").value
+
+      if (!writtenByValue._id) {
+        alert("Invalid Written By")
+        return
+      }
+      this.answerForm.controls['images'].setValue(this.fileList)
+
+      const payload = this.answerForm.value
+      payload.written = writtenByValue._id
+
+      console.log(payload)
+
+      this.service.addTopic(payload).subscribe(() => { })
     }
   }
-  //--------------------------------------------------------------------------
 
   onPaste(event: any) {
     const items = event.clipboardData.items;
-    console.log({ items });
     for (const item of items) {
-      console.log(item.type);
       let blob = null;
       if (item.type.indexOf('image') === 0) {
         blob = item.getAsFile();
@@ -112,7 +166,6 @@ export class AddTopicsComponent implements OnInit {
 
         const reader = new FileReader();
         reader.onload = (evt: any) => {
-          console.log(evt.target.result);
           this.fileList.push({ name: filename, base64: evt.target.result });
         };
         reader.readAsDataURL(blob);

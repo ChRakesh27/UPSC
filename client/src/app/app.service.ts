@@ -13,7 +13,6 @@ export class AppService {
   constructor(private httpClient: HttpClient) { }
 
   getAllToppers(): Observable<any> {
-
     return this.httpClient.get<any>(this.API_HOST + "/toppers")
   }
 
@@ -32,4 +31,10 @@ export class AppService {
   getTopperById(id: String): Observable<any> {
     return this.httpClient.get<any>(`${this.API_HOST}/toppers/${id}`)
   }
+
+
+  addTopic(data: any): Observable<any> {
+    return this.httpClient.post<any>(`${this.API_HOST}/topics`, data)
+  }
+
 }
