@@ -130,15 +130,12 @@ export class AddTopicsComponent implements OnInit {
   submit() {
     console.log(this.answerForm.value)
     if (this.answerForm.valid) {
-
       const writtenByValue = this.answerForm.get("written").value
-
       if (!writtenByValue._id) {
         alert("Invalid Written By")
         return
       }
       this.answerForm.controls['images'].setValue(this.fileList)
-
       const payload = this.answerForm.value
       payload.written = writtenByValue._id
 
@@ -146,6 +143,7 @@ export class AddTopicsComponent implements OnInit {
 
       this.service.addTopic(payload).subscribe(() => {
         this.answerForm.reset()
+        this.fileList = []
       })
     }
   }

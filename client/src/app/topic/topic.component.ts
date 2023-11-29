@@ -23,7 +23,6 @@ export class TopicComponent implements OnInit {
       }
       this.service.getTopicById(params["id"]).subscribe((data) => {
         this.topic = data
-        // console.log("🚀 ~ data:", data)
       })
     })
   }

@@ -1,16 +1,30 @@
 <button class="btn btn-primary mb-3" [routerLink]="['../../']">back</button>
-<div class="list-group list-group-light">
-  <h3 class="list-group-item px-3 border-0 active rounded text-center">
-    {{ topic?.topicName }}
-  </h3>
-  <div class="d-flex m-1 me-5 text-center">
-    <p class="">{{ topic?.testCode }}</p>
-    <p class="">{{ topic?.number }}</p>
-    <p class="">{{ topic?.question }}</p>
-    <p class="">{{ topic?.answer }}</p>
-    <!-- {{ topic?.images }}<br> -->
-    <p class="">{{ topic?.paper }}</p>
-    <p class="">{{ topic?.topicName }}</p>
-    <p class="">{{ topic?.subtopicName }}</p>
+<div class="d-flex justify-content-center">
+  <h1>{{ topic?.paper | uppercase }}</h1>
+</div>
+<div class="row d-flex justify-content-between">
+  <div class="col">
+    <h1>{{ topic?.number }}. {{ topic?.question }}</h1>
+  </div>
+  <div class="col" align="end">
+    <h3>{{ topic?.testCode }}</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <p>{{ topic?.answer }}</p>
+  </div>
+</div>
+@for (img of topic?.images; track $index) {
+<img src="{{ img.base64 }}" alt="{{ img.name }}" width="600" height="500" />
+}
+<div class="row">
+  <div class="col">
+    <h3>{{ topic?.topicName }}</h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <h3>{{ topic?.subtopicName }}</h3>
   </div>
 </div>

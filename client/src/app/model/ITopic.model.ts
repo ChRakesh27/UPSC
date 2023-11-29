@@ -4,7 +4,7 @@ export interface ITopic {
     number: Number,
     question: string,
     answer: string,
-    images: [],
+    images: [{ base64: "", name: "" }],
     written: string,
     paper: string,
     topicName: string,
