@@ -10,16 +10,16 @@
     Toppers
   </h3>
   @for (topper of toppers; track $index) {
-    <div class="d-flex m-1">
-      <button
-        [routerLink]="['/toppers', topper._id]"
-        class="list-group-item list-group-item-action px-3 border-2 me-1"
-      >
-        {{ topper.name }}
-      </button>
-      <button mat-button class="btn btn-primary" (click)="openDialog(topper)">
-        View
-      </button>
-    </div>
+  <div class="d-flex m-1">
+    <button
+      (click)="navigate(topper)"
+      class="list-group-item list-group-item-action px-3 border-2 me-1"
+    >
+      {{ topper.name }}
+    </button>
+    <button mat-button class="btn btn-primary" (click)="openDialog(topper)">
+      View
+    </button>
+  </div>
   }
 </div>

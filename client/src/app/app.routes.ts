@@ -10,6 +10,7 @@ export const routes: Routes = [
   {
     path: 'toppers',
     component: TopperListComponent,
+    data: {}
   },
   {
     path: 'toppers/:id',

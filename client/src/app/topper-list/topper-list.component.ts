@@ -5,6 +5,8 @@ import { RouterLink } from '@angular/router';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { TopperComponent } from '../topper/topper.component';
+import { ITopper } from '../model/ITopper.model';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-topper-list',
   standalone: true,
@@ -19,7 +21,8 @@ export class TopperListComponent implements OnInit {
   constructor(
     private service: AppService,
     public dialog: MatDialog,
-  ) {}
+    private router: Router
+  ) { }
   ngOnInit(): void {
     this.service.getAllToppers().subscribe((list) => {
       this.toppers = list;
@@ -33,4 +36,12 @@ export class TopperListComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
     });
   }
+
+
+  navigate(topper: ITopper) {
+    this.router.navigate(['/toppers/' + topper.name], {
+      state: topper
+    });
+  }
+
 }
